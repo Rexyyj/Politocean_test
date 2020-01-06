@@ -1,1 +1,1 @@
-first git test floder
+Politocean idea test - autodrive algorithm
