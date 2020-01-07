@@ -1,0 +1,26 @@
+1.  Input of the algorithm is the middle point of the trcak and the original picture
+2.  Calculate the ratio between real lenth and pixel-> we can get one pixel represent how many real lenth
+    use the methon of finding the relationship of the minimun square in the picture and the actual square size,
+    but we also can use the method by calculate by the parameter of the camera 
+3.  Use the optical flow method to calculate the catual moving speed of the rov
+    Use the optical flow method, we can find the actual movement of some specific points in the picture,
+    and we know the ratio bewteen acutal lenth and the pixel, plus we know the fps of the vedio,
+    we can calcualte the acutal speed of the rov.
+4.  Predit the safe zone (in x direction)
+    Since we knwo the acutal moving speed of the rov, and maybe from the mathematical model we can get the maximum acceleration of the rov,
+    we can calculate the minimun distance to stop the rov under different speed.
+    And we we need to do is to prevent the vision area to reach the red line before the rov stop in the x direction. So that we can get
+    a safe zone for the input middle poitn to stay.
+    If the input middle point is inside the safe zone, we don't need to do anything. 
+    If the input middle point is outside the safe zone, we take action.
+5.  PID 
+    When the input middle point is outside the safe zone, we fix the safe zone and use pid control to make the middle back to the safe zone
+    and then restart the calculation of the safe zone.
+
+    Besides, our final output value of control a pwm value, which means is a acceleration. so maybe we need to use a 
+    double loop pid(position loop and speed loop)
+
+*   Up to now, 1-4 I finished a demon using python
+
+**  The most difficult challenge of the the idea above I think is the problem of the distortion of the picture. And another one is the quality
+    of the picture, if the quality is not high enouth, maybe we can't reconize the squares and the speed calculation will be not so senstive.
